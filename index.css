@@ -1,0 +1,21 @@
+body{
+ 
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    box-sizing: 0;
+}
+
+#myCanvas{
+    background-color: bisque;
+   
+    margin: 0;
+    padding: 0;
+}
+
+.paddle-left{
+    width: 20px;
+    height: 100px;
+    background-color: rgb(152, 32, 32);
+}
