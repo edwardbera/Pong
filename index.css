@@ -9,13 +9,31 @@ body{
 
 #myCanvas{
     background-color: bisque;
-   
+   height: 500px;
+   width: 800px;
     margin: 0;
     padding: 0;
 }
 
-.paddle-left{
-    width: 20px;
-    height: 100px;
+.paddle{
+    width: 10px;
+    height: 40px;
     background-color: rgb(152, 32, 32);
+}
+#paddle-left{
+    position: absolute;
+}
+
+#paddle-right{
+    margin-left: 790px;
+}
+
+#ball{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }

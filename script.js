@@ -1,40 +1,76 @@
+let timestamp = Date.now()
+console.log(timestamp)
+
 //Getting the canvas
-const canvas = document.getElementById("myCanvas");
+const containerDiv = document.getElementById("myCanvas");
+const canvas = containerDiv.getBoundingClientRect();
 const window_width = canvas.width;
 const window_height = canvas.height;
 
 //creating paddles
 var paddle_left_yposition = 0
 var paddle_right_yposition = window_height - 55
-const paddle_left = canvas.getContext("2d");
-paddle_left.fillStyle = "#FF0000";
-paddle_left.fillRect(0, paddle_left_yposition, 15, 55);
-const paddle_right = canvas.getContext("2d");
-paddle_right.fillStyle = "#FF0000";
-paddle_right.fillRect((window_width-15), paddle_right_yposition , 15, 55);
+const paddle_left = document.getElementById("paddle-left")
+
+const paddle_right = document.getElementById("paddle-right")
+
+const ball = document.getElementById("ball")
+
+
 
 //Updating paddle position
-function MovePaddle(){
-    
-    paddle_left.fillRect(0, paddle_left_yposition, 15, 55);
 
-}
 
 //creating ball
-const ball = canvas.getContext("2d");
-var ball_xposition = (window_width/2)-(7.5);
-var ball_yposition = (window_height/2) - (22.5);
-ball.fillStyle = "#FF0000";
-ball.fillRect(ball_xposition, ball_yposition, 20, 20);
+function drawBall(dt){
+     let x = 0
+     let y = 0
+     x += dt;
+     y +=dt;
+    
+        if ( y < (window_height - 20) ){
+      
+            ball.style.top =  y + "px"
+            ball.style.left = x + "px"
+          
+        }else if ( y => (window_height - 20) ){
 
+            ball.style.top =  (960 - y) + "px"
+            ball.style.left = x + "px"
 
+        }
+           
+}
+
+temp = 0
 //Paddle controls
 document.onkeydown = (evt) => {
     if (evt.key =="s"){
-        paddle_left_yposition += 10
-        MovePaddle();
-    }else if (evt.key =="w" && paddle_left_yposition >0){
-        paddle_left_yposition -= 10
+       
+        if (paddle_left.style.top.replace("px","") < (window_height - 40)){
+            temp = temp + 20
+            paddle_left.style.top = (temp) + "px"
+        }
+        
+        
+        
+    }else if (evt.key =="w"){
+        if (paddle_left.style.top.replace("px","") > 0){
+            temp = temp - 20
+            paddle_left.style.top = (temp) + "px"
+        }
     }
-    console.log(paddle_left_yposition)
+    
 }
+let x = 0
+    let y = 0
+//Game loop
+
+let dt = 0
+setInterval(() => {
+    
+    drawBall(dt)
+
+  
+    dt +=2;
+}, 50);
